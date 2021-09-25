@@ -31,6 +31,10 @@ export class UserServices {
             );
     }
 
+    listUser(){
+        return this.fireStore.collection('user').valueChanges();
+    }
+
     registerUser(user: User) {
 
         return this.fireStore

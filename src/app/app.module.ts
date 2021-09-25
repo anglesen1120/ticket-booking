@@ -15,6 +15,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 
 registerLocaleData(en);
@@ -33,6 +34,7 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    NzTableModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,ReactiveFormsModule
   ],
