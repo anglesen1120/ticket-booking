@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
                     const userId = result.map(x => x.payload.doc.id);
                     this.userLoggedIn = user[0];
                     localStorage.setItem('BK_userId', userId[0]);
-                    localStorage.setItem("USER_LOGGEDIN", JSON.stringify(this.userLoggedIn))
+                    sessionStorage.setItem("USER_LOGGEDIN", JSON.stringify(this.userLoggedIn))
                     alert('Login is successfull');
                     this.router.navigate(['booking']);
                 }else{

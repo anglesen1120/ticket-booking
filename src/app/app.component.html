@@ -18,9 +18,9 @@
                     </li>
                 </ul>
             </li>
-            <li nz-submenu nzOpen nzTitle="Admin Infomation" nzIcon="form">
+            <li nz-submenu nzOpen nzTitle="Admin Infomation" nzIcon="form" *ngIf="userLoggedIn?.roles == 'admin'">
                 <ul>
-                    <li nz-menu-item nzMatchRouter>
+                    <li nz-menu-item nzMatchRouter >
                         <a routerLink="/list-user">List Customer</a>
                     </li>
                 </ul>

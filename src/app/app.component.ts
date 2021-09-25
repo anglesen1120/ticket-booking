@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        const userFromStorage: any = localStorage.getItem('USER_LOGGEDIN')
+        const userFromStorage: any = sessionStorage.getItem('USER_LOGGEDIN')
         this.userLoggedIn = JSON.parse(userFromStorage)
         this.userService.userLoggedIn$.subscribe(result =>{
             const userResult = result.map(x => x.payload.doc.data());
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
 
     logout() {
         this.userLoggedIn = null;
-        localStorage.removeItem('USER_LOGGEDIN');
+        sessionStorage.removeItem('USER_LOGGEDIN');
         this.router.navigate(['login']);
     }
 }

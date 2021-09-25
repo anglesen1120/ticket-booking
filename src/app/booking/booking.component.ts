@@ -23,7 +23,7 @@ export class BookingComponent implements OnInit {
         private userServices: UserServices,
         private router: Router
     ) {
-        let userLoggedIn: any = localStorage.getItem('USER_LOGGEDIN')
+        let userLoggedIn: any = sessionStorage.getItem('USER_LOGGEDIN')
         this.maxDiscount = (JSON.parse(userLoggedIn).points)
 
         this.bookingForm = this.formBuilder.group({

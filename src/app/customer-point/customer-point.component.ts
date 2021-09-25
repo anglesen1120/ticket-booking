@@ -12,7 +12,7 @@ export class CustomerPointComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
-        const userFromStorage: any = localStorage.getItem('USER_LOGGEDIN');
+        const userFromStorage: any = sessionStorage.getItem('USER_LOGGEDIN');
         this.userLoggedIn = JSON.parse(userFromStorage);
     }
 }
