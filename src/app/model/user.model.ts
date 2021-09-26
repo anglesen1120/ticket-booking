@@ -6,5 +6,5 @@ export class User {
     name: string | undefined;
     points: number | undefined;
     level: string | undefined;
-
+    pointSpend : number | undefined;
 }

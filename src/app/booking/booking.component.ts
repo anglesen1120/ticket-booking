@@ -23,14 +23,14 @@ export class BookingComponent implements OnInit {
         private userServices: UserServices,
         private router: Router
     ) {
-        let userLoggedIn: any = sessionStorage.getItem('USER_LOGGEDIN')
-        this.maxDiscount = (JSON.parse(userLoggedIn).points)
+        let userLoggedIn: any = sessionStorage.getItem('USER_LOGGEDIN');
+        this.maxDiscount = (JSON.parse(userLoggedIn).points);
 
         this.bookingForm = this.formBuilder.group({
-            from: [],
-            to: [],
+            from: ["HCM"],
+            to: ["HCM"],
             dateFight: [],
-            price: [100],
+            price: [1000],
             noPas: [1],
             discount: [0, {
                 validators: [
@@ -38,33 +38,42 @@ export class BookingComponent implements OnInit {
                 ]
             }],
             totalAmount: [{
-                value: 100,
+                value: 1000,
                 disabled: true
             }]
         });
     }
 
     ngOnInit() {
-
+        
     }
 
-    onSelectPas(){
+    onSelectPas() {
         this.noOfPass = this.bookingForm?.value.noPas
-        this.totalAmount(this.price, this.noOfPass, this.discount)
+        this.totalAmount(this.bookingForm?.value.price, this.noOfPass, this.bookingForm?.value.discount);
     }
 
-    onPriceChange(){
+    onPriceChange() {
         this.price = (this.bookingForm?.value.price)
         this.totalAmount(this.price, this.noOfPass, this.discount)
     }
 
-    onDiscountChange(){
+    onDiscountChange() {
         this.discount = this.bookingForm?.value.discount
-        this.totalAmount(this.price, this.noOfPass, this.discount)
+
+        // Check discount
+        let userLoggedIn: any = sessionStorage.getItem('USER_LOGGEDIN');
+        this.maxDiscount = (JSON.parse(userLoggedIn).points);
+        if (this.discount > this.maxDiscount) {
+            alert('The point is not enough for this action! Please check again');
+            this.bookingForm?.controls.discount.setValue(0);
+        } else {
+            this.totalAmount(this.bookingForm?.value.price, this.bookingForm?.value.noPas, this.discount);
+        }
     }
 
-    totalAmount(price: number, noOfPass: number, discount: number){
-        this.bookingForm?.patchValue ({
+    totalAmount(price: number, noOfPass: number, discount: number) {
+        this.bookingForm?.patchValue({
             totalAmount: (price * noOfPass) - discount
         })
     }
@@ -85,10 +94,10 @@ export class BookingComponent implements OnInit {
         this.userServices
             .createBookingUser(Object.assign({}, dataBooking))
             .then((result) => {
-                console.log('result', result.id);
                 if (result.id != null) {
-                    alert('Booking is successfully');
-                    this.router.navigate(['customer-point']);
+                    // alert(`Booking is successfully and you have more ${dataBooking.priceAfterDiscount} point!`);
+                    // this.router.navigate(['customer-point']);
+                    this.userServices.updatePointAndLevel(dataBooking.priceAfterDiscount == null ? 0 : dataBooking.priceAfterDiscount, dataBooking.discount == null ? 0 : dataBooking.discount);
                 }
             })
             .catch((error) => {

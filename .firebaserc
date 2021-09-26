@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "ticket-booking-168ae"
+    "default": "my-ticket-booking"
+  },
+  "targets": {
+    "my-ticket-booking": {
+      "hosting": {
+        "ticket-booking": [
+          "my-ticket-booking"
+        ]
+      }
+    }
   }
 }

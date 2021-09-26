@@ -1,22 +1,23 @@
-<nz-table #basicTable >
-        <tr>
-            <th>User Name</th>
-            <td>{{ userLoggedIn.email }}</td>
-        </tr>
-        <tr>
-            <th>Full Name</th>
-            <td>{{ userLoggedIn.name }}</td>
-        </tr>
-        <tr >
-            <th>Level</th>
-            <td>{{ userLoggedIn.level }}</td>
-        </tr>
-        <tr >
-            <th>Points</th>
-            <td>{{ userLoggedIn.points }}</td>
-        </tr>
-        <tr >
-            <th>Role</th>
-            <td>{{ userLoggedIn.roles }}</td>
-        </tr>
+<nz-table #basicTable>
+    <tr>
+        <th>User Name</th>
+        <td>{{ dataCustomer.email }}</td>
+    </tr>
+
+    <tr>
+        <th>Status</th>
+        <td>{{ dataCustomer.level }}</td>
+    </tr>
+    <tr>
+        <th>Points</th>
+        <td>{{ dataCustomer.points == "NaN" ? 0 :  dataCustomer.points}}</td>
+    </tr>
+    <tr>
+        <th>Spent</th>
+        <td>{{ dataCustomer.pointSpend }}</td>
+    </tr>
+    <tr>
+        <th>Role</th>
+        <td>{{ dataCustomer.roles }}</td>
+    </tr>
 </nz-table>

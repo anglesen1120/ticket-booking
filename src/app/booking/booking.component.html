@@ -1,5 +1,5 @@
 <form action=""
-[formGroup]="bookingForm"
+      [formGroup]="bookingForm"
       *ngIf="bookingForm">
   <div class="relative background-booking flex items-center justify-center bg-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover relative items-center"
        style="background-image: url(https://images.unsplash.com/photo-1532423622396-10a3f979251a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80);">
@@ -17,22 +17,32 @@
               <div class="md:flex flex-row md:space-x-4 w-full text-xs">
                 <div class="mb-3 space-y-2 w-full text-xs">
                   <label class="font-semibold text-gray-600 py-2">From <abbr title="required">*</abbr></label>
-                  <input placeholder="Place Form" formControlName="from"
-                         class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                         required="required"
-                         type="text"
-                         name="integration[shop_name]"
-                         id="integration_shop_name">
+                  <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
+                          required="required"
+                          formControlName="from"
+                          (change)="onSelectPas()"
+                          name="integration[city_id]"
+                          id="integration_city_id">
+                    <option value="HCM">Ho Chi Minh</option>
+                    <option value=HN>Ha Noi</option>
+                    <option value=QN>Quang Ninh</option>
+                    <option value=DN>Da Nang</option>
+                  </select>
                   <p class="text-red text-xs hidden">Please fill out this field.</p>
                 </div>
                 <div class="mb-3 space-y-2 w-full text-xs">
                   <label class="font-semibold text-gray-600 py-2">To <abbr title="required">*</abbr></label>
-                  <input placeholder="Place To" formControlName="to"
-                         class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                         required="required"
-                         type="text"
-                         name="integration[shop_name]"
-                         id="integration_shop_name">
+                  <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
+                          required="required"
+                          formControlName="to"
+                          (change)="onSelectPas()"
+                          name="integration[city_id]"
+                          id="integration_city_id">
+                    <option value="HCM">New Yord</option>
+                    <option value=HN>Japan</option>
+                    <option value=QN>Mexico</option>
+                    <option value=DN>London</option>
+                  </select>
                   <p class="text-red text-xs hidden">Please fill out this field.</p>
                 </div>
               </div>
@@ -55,7 +65,8 @@
                       </svg>
                     </span>
                   </div>
-                  <input type="date" formControlName="dateFight"
+                  <input type="date"
+                         formControlName="dateFight"
                          class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
                          placeholder="https://">
                 </div>
@@ -63,18 +74,25 @@
               <div class="md:flex md:flex-row md:space-x-4 w-full text-xs">
                 <div class="w-full flex flex-col mb-3">
                   <label class="font-semibold text-gray-600 py-2">Price</label>
-                  <input placeholder="Price" formControlName="price"
-                         class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4"
-                         type="number"
-                         name="integration[street_address]"
-                         id="integration_street_address"
-                         (change) = "onPriceChange()">
+                  <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
+                          required="required"
+                          formControlName="price"
+                          (change)="onSelectPas()"
+                          name="integration[city_id]"
+                          id="integration_city_id">
+                    <option value=1000>1000</option>
+                    <option value=2000>2000</option>
+                    <option value=5000>5000</option>
+
+                  </select>
                 </div>
                 <div class="w-full flex flex-col mb-3">
                   <label class="font-semibold text-gray-600 py-2">No. of Passengers<abbr
                           title="required">*</abbr></label>
                   <select class="block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4 md:w-full "
-                          required="required" formControlName="noPas" (change) = "onSelectPas()"
+                          required="required"
+                          formControlName="noPas"
+                          (change)="onSelectPas()"
                           name="integration[city_id]"
                           id="integration_city_id">
                     <option value=1>1</option>
@@ -109,9 +127,12 @@
                     </a>
 
                   </div>
-                  <input type="number" formControlName="discount"
+                  <input type="number"
+                         formControlName="discount"
                          class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
-                         placeholder="discount" (change)="onDiscountChange()" min=0 >
+                         placeholder="discount"
+                         (change)="onDiscountChange()"
+                         min=0>
                 </div>
               </div>
 
@@ -137,7 +158,8 @@
                     </a>
 
                   </div>
-                  <input type="number" formControlName="totalAmount"
+                  <input type="number"
+                         formControlName="totalAmount"
                          class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border border-l-0 h-10 border-grey-light rounded-lg rounded-l-none px-3 relative focus:border-blue focus:shadow"
                          placeholder="discount">
                 </div>
@@ -146,8 +168,8 @@
                 <button
                         class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
                   Cancel </button>
-                <button
-                        class="mb-2 md:mb-0 bg-green-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-500" (click)="createBookingTicket()">Booking</button>
+                <button class="mb-2 md:mb-0 bg-green-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-green-500"
+                        (click)="createBookingTicket()">Booking</button>
               </div>
             </div>
           </div>
