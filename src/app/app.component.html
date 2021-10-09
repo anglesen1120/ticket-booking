@@ -13,7 +13,7 @@
                     <li nz-menu-item nzMatchRouter>
                         <a routerLink="/customer-point">Infomation User</a>
                     </li>
-                    <li nz-menu-item nzMatchRouter>
+                    <li nz-menu-item nzMatchRouter  *ngIf="userLoggedIn?.roles == 'User'">
                         <a a routerLink="/booking">Booking</a>
                     </li>
                 </ul>

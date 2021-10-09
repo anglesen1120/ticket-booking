@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('BK_userId', userId[0]);
                     localStorage.setItem('UserName', JSON.stringify(this.userLoggedIn));
                     sessionStorage.setItem("USER_LOGGEDIN", JSON.stringify(this.userLoggedIn))
-                    this.router.navigate(['booking']);
+                    this.router.navigate(['customer-point']);
                 } else {
                     alert('The username or password is incorrect!');
                 }
